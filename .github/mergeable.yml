@@ -76,6 +76,10 @@ mergeable:
           body: 'One or more assignees are required. Kindly add one or more assignees for this pull request.'
   - when: pull_request.*, pull_request_review.*
     name: 'Ensure Pull Request has been approved'
+    filter:
+      - do: author
+        must_exclude:
+          regex: 'tenshiAMD'
     validate:
       - do: approvals
         min:
