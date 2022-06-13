@@ -51,6 +51,7 @@ mergeable:
       - do: size
         ignore: 
           - '*.lock'
+          - '*-lock.json'
         lines:
           max:
             count: 500
