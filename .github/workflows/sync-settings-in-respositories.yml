@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Repo Setup
-        uses: kbrashears5/github-action-repo-settings-sync@v1.0.0
+        uses: kbrashears5/github-action-repo-settings-sync@master
         with:
           DELETE_HEAD: 'true'
           TOKEN: ${{ secrets.GH_PAT }}
