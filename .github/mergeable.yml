@@ -49,7 +49,7 @@ mergeable:
     name: 'Validate Pull Request Size'
     validate:
       - do: size
-        ignore: 
+        ignore:
           - '*.lock'
           - '*-lock.json'
         lines:
@@ -60,7 +60,7 @@ mergeable:
         status: 'failure'
         payload: *checks_failure_payload
       - do: comment
-        payload: 
+        payload:
           body: 'Lines of code have too many changes. It should be under 500 lines of addtions and deletions.'
   - when: pull_request.*, pull_request_review.*
     name: 'Validate Pull Request has one or more assignees'
@@ -73,7 +73,7 @@ mergeable:
         status: 'failure'
         payload: *checks_failure_payload
       - do: comment
-        payload: 
+        payload:
           body: 'One or more assignees are required. Kindly add one or more assignees for this pull request.'
   - when: pull_request.*, pull_request_review.*
     name: 'Ensure Pull Request has been approved'
@@ -94,3 +94,11 @@ mergeable:
       - do: title
         must_exclude:
           regex: ^\[WIP\]
+  - when: pull_request.*, pull_request_review.*
+    name: 'Validate Pull Request must not be a draft'
+    validate:
+      - do: payload
+        pull_request:
+          draft:
+            boolean:
+              match: false
