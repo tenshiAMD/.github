@@ -94,11 +94,11 @@ mergeable:
       - do: title
         must_exclude:
           regex: ^\[WIP\]
-  - when: pull_request.*, pull_request_review.*
-    name: 'Validate Pull Request must not be a draft'
-    validate:
-      - do: payload
-        pull_request:
-          draft:
-            boolean:
-              match: false
+#   - when: pull_request.*, pull_request_review.*
+#     name: 'Validate Pull Request must not be a draft'
+#     validate:
+#       - do: payload
+#         pull_request:
+#           draft:
+#             boolean:
+#               match: false
