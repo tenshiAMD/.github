@@ -94,6 +94,14 @@ mergeable:
       - do: title
         must_exclude:
           regex: ^\[WIP\]
+  - when: pull_request.*, pull_request_review.*
+    name: 'Validate Pull Request Head Ref'
+    validate:
+      - do: headRef
+        must_include:
+          regex: '^(feature|hotfix)\/.+$'
+          message: |
+            Your pull request does not adhere to the branch naming convention described <a href="https://datasift.github.io/gitflow/IntroducingGitFlow.html">here</a>.
 #   - when: pull_request.*, pull_request_review.*
 #     name: 'Validate Pull Request must not be a draft'
 #     validate:
