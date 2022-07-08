@@ -75,6 +75,8 @@ mergeable:
       - do: comment
         payload:
           body: 'One or more assignees are required. Kindly add one or more assignees for this pull request.'
+      - do: assign
+        assignees: [ '@author' ]
   - when: pull_request.*, pull_request_review.*
     name: 'Ensure Pull Request has been approved'
     filter:
@@ -110,3 +112,4 @@ mergeable:
 #           draft:
 #             boolean:
 #               match: false
+  
