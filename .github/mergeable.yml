@@ -92,10 +92,7 @@ mergeable:
     validate:
       - do: label
         must_exclude:
-          regex: 'wip'
-      - do: title
-        must_exclude:
-          regex: ^\[WIP\]
+          regex: 'work in progress'
   - when: pull_request.*, pull_request_review.*
     name: 'Validate Pull Request Head Ref'
     validate:
@@ -104,12 +101,16 @@ mergeable:
           regex: '^(feature|hotfix|release)\/.+$'
           message: |
             Please follow branch naming convention described <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">here</a>. Thank you.
-#   - when: pull_request.*, pull_request_review.*
-#     name: 'Validate Pull Request must not be a draft'
-#     validate:
-#       - do: payload
-#         pull_request:
-#           draft:
-#             boolean:
-#               match: false
-  
+  - when: pull_request.*, pull_request_review.*
+    name: 'Set draft Pull Request as Work in Progress'
+    filter:
+      - do: payload
+        pull_request:
+          draft:
+            boolean:
+              match: true
+    validate: []
+    pass:
+      - do: labels
+        labels: [ 'work in progress' ]
+        mode: 'add'
