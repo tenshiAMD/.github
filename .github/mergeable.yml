@@ -80,7 +80,7 @@ mergeable:
     filter:
       - do: author
         must_exclude:
-          regex: 'tenshiAMD'
+          regex: '@author'
     validate:
       - do: approvals
         min:
