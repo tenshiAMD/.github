@@ -95,6 +95,10 @@ mergeable:
           regex: 'work in progress'
   - when: pull_request.*, pull_request_review.*
     name: 'Validate Pull Request Head Ref'
+    filter:
+      - do: author
+        must_exclude:
+          regex: 'dependabot'
     validate:
       - do: headRef
         must_include:
