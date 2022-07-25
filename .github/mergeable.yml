@@ -118,3 +118,15 @@ mergeable:
       - do: labels
         labels: [ 'work in progress' ]
         mode: 'add'
+  - when: pull_request.opened
+    name: "Greet a contributor"
+    filter:
+      - do: author
+        must_exclude:
+          regex: tenshiAMD|dependabot
+    validate: []
+    pass:
+      - do: comment
+        payload:
+          body: |
+            Thanks for creating a pull request! A maintainer will review your changes shortly. Please don't be discouraged if it takes a while.
