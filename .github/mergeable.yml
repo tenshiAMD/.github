@@ -106,6 +106,21 @@ mergeable:
           message: |
             Please follow branch naming convention described <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">here</a>. Thank you.
   - when: pull_request.*, pull_request_review.*
+    name: 'Validate necessary files must be included'
+    validate:
+      - do: changeset
+        and:
+          - must_include:
+              regex: 'LICENSE'
+          # - must_include:
+          #     regex: 'README.md'
+          # - must_include:
+          #     regex: 'CODE_OF_CONDUCT.md'
+          # - must_include:
+          #     regex: '.gitignore'
+          # - must_include:
+          #     regex: '.editorconfig'
+  - when: pull_request.*, pull_request_review.*
     name: 'Set draft Pull Request as Work in Progress'
     filter:
       - do: payload
