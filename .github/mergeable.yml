@@ -118,6 +118,12 @@ mergeable:
       - do: labels
         labels: [ 'work in progress' ]
         mode: 'add'
+  - when: pull_request.*, pull_request_review.*
+    validate:
+      - do: dependent
+        changed:
+          file: 'package.json'
+          required: ['package-lock.json', 'yarn.lock']
   - when: pull_request.opened
     name: "Greet a contributor"
     filter:
