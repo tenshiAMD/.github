@@ -122,6 +122,12 @@ mergeable:
     validate:
       - do: dependent
         changed:
+          file: 'Gemfile'
+          required: ['Gemfile.lock']
+  - when: pull_request.*, pull_request_review.*
+    validate:
+      - do: dependent
+        changed:
           file: 'package.json'
           required: ['package-lock.json', 'yarn.lock']
   - when: pull_request.opened
