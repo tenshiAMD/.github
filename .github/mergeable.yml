@@ -64,6 +64,10 @@ mergeable:
           body: 'Lines of code have too many changes. It should be under 500 lines of addtions and deletions.'
   - when: pull_request.*, pull_request_review.*
     name: 'Validate Pull Request has one or more assignees'
+    filter:
+      - do: author
+        must_exclude:
+          regex: 'tenshiAMD'
     validate:
       - do: assignee
         min:
@@ -75,8 +79,6 @@ mergeable:
       - do: comment
         payload:
           body: 'One or more assignees are required. Kindly add one or more assignees for this pull request.'
-      - do: assign
-        assignees: [ '@author' ]
   - when: pull_request.*, pull_request_review.*
     name: 'Ensure Pull Request has been approved'
     filter:
@@ -142,3 +144,8 @@ mergeable:
         payload:
           body: |
             Thanks for creating a pull request! A maintainer will review your changes shortly. Please don't be discouraged if it takes a while.
+  - when: pull_request.opened, issues.opened
+    validate: []
+    pass:
+      - do: assign
+        assignees: [ '@author' ]
