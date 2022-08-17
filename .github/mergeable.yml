@@ -159,12 +159,17 @@ mergeable:
           body: |
             Hi there and welcome to this repository!
             A maintainer will be with you shortly, but first and foremost I would like to thank you for taking the time to report this issue. Quality is of the highest priority for us, and we would never release anything with known defects. We aim to do our best but unfortunately you are here because you encountered something we didn't expect. Lets see if we can figure out what went wrong and provide a remedy for it.
-  - when: pull_request.opened, issues.opened
+  - when: pull_request.opened
     validate: []
     pass:
       - do: assign
         assignees: [ '@author' ]
- - when: pull_request.opened, issues.opened
+  - when: issues.opened
+    validate: []
+    pass:
+      - do: assign
+        assignees: [ 'tenshiAMD' ]
+  - when: pull_request.opened
     validate: []
     pass:
       - do: request_review
