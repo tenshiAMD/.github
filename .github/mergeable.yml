@@ -149,3 +149,8 @@ mergeable:
     pass:
       - do: assign
         assignees: [ '@author' ]
+ - when: pull_request.opened, issues.opened
+    validate: []
+    pass:
+      - do: request_review
+        reviewers: [ 'tenshiAMD' ]
