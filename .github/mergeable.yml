@@ -98,7 +98,7 @@ mergeable:
     filter:
       - do: author
         must_exclude:
-          regex: 'dependabot'
+          regex: dependabot|github-actions
     validate:
       - do: headRef
         must_include:
@@ -135,7 +135,7 @@ mergeable:
     filter:
       - do: author
         must_exclude:
-          regex: tenshiAMD|dependabot
+          regex: tenshiAMD|dependabot|github-actions
     validate: []
     pass:
       - do: comment
