@@ -19,6 +19,48 @@ defaults:
 
 version: 2
 mergeable:
+  - when: pull_request.opened
+    name: "Greet a contributor"
+    filter:
+      - do: author
+        must_exclude:
+          regex: tenshiAMD|dependabot|github-actions
+    validate: []
+    pass:
+      - do: comment
+        payload:
+          body: |
+            Hi there and welcome to this repository!
+            A maintainer will be with you shortly, but first and foremost I would like to thank you for taking the time to contribute to this codebase. Open source is built on the idea of collaboration and I applaud you for your contribution.
+            Thank you so much and keep being awesome!
+  - when: issues.opened
+    name: "Greet a contributor"
+    filter:
+      - do: author
+        must_exclude:
+          regex: tenshiAMD|dependabot|github-actions
+    validate: []
+    pass:
+      - do: comment
+        payload:
+          body: |
+            Hi there and welcome to this repository!
+            A maintainer will be with you shortly, but first and foremost I would like to thank you for taking the time to report this issue. Quality is of the highest priority for us, and we would never release anything with known defects. We aim to do our best but unfortunately you are here because you encountered something we didn't expect. Lets see if we can figure out what went wrong and provide a remedy for it.
+  - when: pull_request.opened
+    validate: []
+    pass:
+      - do: assign
+        assignees: [ '@author' ]
+  - when: issues.opened
+    validate: []
+    pass:
+      - do: assign
+        assignees: [ 'tenshiAMD' ]
+  - when: pull_request.opened
+    validate: []
+    pass:
+      - do: request_review
+        reviewers: [ 'tenshiAMD' ]
   - when: pull_request.*, pull_request_review.*
     name: 'Validate Pull Request Description'
     validate:
@@ -132,45 +174,3 @@ mergeable:
         changed:
           file: 'package.json'
           required: ['package-lock.json', 'yarn.lock']
-  - when: pull_request.opened
-    name: "Greet a contributor"
-    filter:
-      - do: author
-        must_exclude:
-          regex: tenshiAMD|dependabot|github-actions
-    validate: []
-    pass:
-      - do: comment
-        payload:
-          body: |
-            Hi there and welcome to this repository!
-            A maintainer will be with you shortly, but first and foremost I would like to thank you for taking the time to contribute to this codebase. Open source is built on the idea of collaboration and I applaud you for your contribution.
-            Thank you so much and keep being awesome!
-  - when: issues.opened
-    name: "Greet a contributor"
-    filter:
-      - do: author
-        must_exclude:
-          regex: tenshiAMD|dependabot|github-actions
-    validate: []
-    pass:
-      - do: comment
-        payload:
-          body: |
-            Hi there and welcome to this repository!
-            A maintainer will be with you shortly, but first and foremost I would like to thank you for taking the time to report this issue. Quality is of the highest priority for us, and we would never release anything with known defects. We aim to do our best but unfortunately you are here because you encountered something we didn't expect. Lets see if we can figure out what went wrong and provide a remedy for it.
-  - when: pull_request.opened
-    validate: []
-    pass:
-      - do: assign
-        assignees: [ '@author' ]
-  - when: issues.opened
-    validate: []
-    pass:
-      - do: assign
-        assignees: [ 'tenshiAMD' ]
-  - when: pull_request.opened
-    validate: []
-    pass:
-      - do: request_review
-        reviewers: [ 'tenshiAMD' ]
