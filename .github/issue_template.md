@@ -1,6 +1,5 @@
 ### Steps to reproduce
-<!-- (Guidelines for creating a bug report are [available
-here](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#creating-a-bug-report)) -->
+<!-- Tell us how we can reproduce -->
 
 ### Expected behavior
 <!-- Tell us what should happen -->
@@ -8,7 +7,4 @@ here](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#crea
 ### Actual behavior
 <!-- Tell us what happens instead -->
 
-### System configuration
-**Rails version**:
-
-**Ruby version**:
+### Other Information

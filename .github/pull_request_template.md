@@ -14,8 +14,4 @@ benchmarks, or other information.
 If you are updating any of the CHANGELOG files or are asked to update the
 CHANGELOG files by reviewers, please add the CHANGELOG entry at the top of the file.
 
-Finally, if your pull request affects documentation or any non-code
-changes, guidelines for those changes are [available
-here](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation)
-
 Thanks for contributing! -->
